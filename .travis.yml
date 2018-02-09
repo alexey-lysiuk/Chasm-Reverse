@@ -8,10 +8,10 @@ branches:
 matrix:
   include:
 # TODO: code is not ready yet
-    - os: osx
-      osx_image: xcode9.2
-      env:
-        - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Release"
+#    - os: osx
+#      osx_image: xcode9.2
+#      env:
+#        - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Release"
 
     - os: linux
       compiler: gcc
@@ -24,7 +24,7 @@ matrix:
       compiler: gcc
       env:
         - GCC_VERSION=5
-        - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Release"
+        - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Debug"
       addons:
         apt:
           sources:
@@ -37,7 +37,7 @@ matrix:
       compiler: gcc
       env:
         - GCC_VERSION=6
-        - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Debug"
+        - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Release"
       addons:
         apt:
           sources:
@@ -74,8 +74,14 @@ matrix:
             - libsdl2-dev
 
 before_install:
-  - if [ -n "$GCC_VERSION" ]; then export CC="gcc-${GCC_VERSION}" CXX="g++-${GCC_VERSION}"; fi
-  - if [ -n "$CLANG_VERSION" ]; then export CC="clang-${CLANG_VERSION}" CXX="clang++-${CLANG_VERSION}"; fi
+  - >
+    if [[ -n "$GCC_VERSION" ]]; then
+      export CC="gcc-${GCC_VERSION}"
+      export CXX="g++-${GCC_VERSION}"
+    else if [[ -n "$CLANG_VERSION" ]]; then
+      export CC="clang-${CLANG_VERSION}"
+      export CXX="clang++-${CLANG_VERSION}"
+    fi
   - $CC --version
   - $CXX --version
 
