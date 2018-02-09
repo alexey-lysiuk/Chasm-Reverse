@@ -81,15 +81,15 @@ before_install:
 
 script:
   - if [ -z "${CMAKE_OPTIONS}" ]; then
-    - mkdir build
-    - cd build
-    - cmake ${CMAKE_OPTIONS} ..
-    - make -j2
-  - else
-    - cd PanzerChasm 
-    - qmake PanzerChasm.pro
-    - make
-  - fi
+      mkdir build
+      cd build
+      cmake ${CMAKE_OPTIONS} ..
+      make -j2
+    else
+      cd PanzerChasm 
+      qmake PanzerChasm.pro
+      make
+    fi
 
 notifications:
   email: false
