@@ -7,12 +7,6 @@ branches:
 
 matrix:
   include:
-# TODO: code is not ready yet
-#    - os: osx
-#      osx_image: xcode9.2
-#      env:
-#        - CMAKE_OPTIONS="-DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7"
-
     - os: linux
       compiler: gcc
       addons:
