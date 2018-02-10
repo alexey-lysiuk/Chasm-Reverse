@@ -52,7 +52,7 @@ void MovementController::Tick( const KeyboardState& keyboard_state )
 	prev_calc_tick_= new_tick;
 
 	auto key_pressed=
-	[&]( const char* const key_setting_name )
+	[&]( const char* const key_setting_name ) -> bool
 	{
 		using KeyCode= SystemEvent::KeyEvent::KeyCode;
 		const KeyCode key= static_cast<KeyCode>( settings_.GetInt( key_setting_name ) );
@@ -93,7 +93,7 @@ void MovementController::GetAcceleration(
 	m_Vec3 move_vector(0.0f,0.0f,0.0f);
 
 	auto key_pressed=
-	[&]( const char* const key_setting_name )
+	[&]( const char* const key_setting_name ) -> bool
 	{
 		using KeyCode= SystemEvent::KeyEvent::KeyCode;
 		const KeyCode key= static_cast<KeyCode>( settings_.GetInt( key_setting_name ) );
