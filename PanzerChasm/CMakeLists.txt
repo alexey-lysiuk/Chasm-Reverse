@@ -244,6 +244,11 @@ if(WIN32)
 	set(RESOURCES
 		PanzerChasm.rc
 	)
+elseif(APPLE)
+	set(LIBS
+		${LIBS}
+		"-framework OpenGL"
+	)
 else()
 	set(LIBS
 		${LIBS}
@@ -260,3 +265,7 @@ add_executable(PanzerChasm WIN32 MACOSX_BUNDLE
 )
 
 target_link_libraries(PanzerChasm ${LIBS})
+
+set_target_properties(PanzerChasm PROPERTIES 
+	MACOSX_BUNDLE_INFO_PLIST PanzerChasm.plist.in
+)
